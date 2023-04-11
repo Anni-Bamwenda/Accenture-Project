@@ -50,7 +50,8 @@ We will apply drop unnecessary and redundant data from the datasets then create 
     for city in df_acc_cities.City:
       df_cities.loc[df_cities.city_name == city,'flag'] = 1
 
-    # counting the number of fortune 500 companies in a city then changing the value to the count in our 'no_of_fortune_500' column
+    # counting the number of fortune 500 companies in a city then changing the value to the count 
+    in our 'no_of_fortune_500' column
     # create a dictionary for the df_fortune.CITY with cities as keys and frequency/count as the value
     fortune500_dict = {}
 
@@ -79,6 +80,7 @@ We will apply drop unnecessary and redundant data from the datasets then create 
     ```
     
     INSERT IMAGE HERE!(Screenshot)
+
     
 * Step 03: Creating a new dataframe
 The dataframe will have df_cities.city_name, df_cities.Flag, df_cities.population from existing datasets and the two new columns no. of fortune 500 companies and sum of fortune 500 profits. We'll do that by creating a copy of the existing us_cities df, removing other columns we won't be using,
@@ -127,6 +129,11 @@ In the future might be better to use 70% for training and 30% for testing.
 
 ### Machine Learning
 We are using logistic regression so our output will be a binary value of 1: Accenture should open a new office or 0: Accenture should not open a new office. Logistic regression model will learn from our training set, then hypertune/modify the features (columns) to give us better predictions.
+Model's outcome is mainly based on these factors:
+* Population density
+* No. of fortune 500 companies in a city
+* Population of the city
+
 
 INSERT IMAGES OF LOGISTIC REGRESSION
 
@@ -150,10 +157,12 @@ INSERT IMAGES OF LOGISTIC REGRESSION
 
     model.fit(X_train, y_train)
 
-    # 3. Make predictions on the test data using the predict_proba() method and assign the result to the variable 'probability_predictions' below
+    # 3. Make predictions on the test data using the predict_proba() method and assign the result to 
+    the variable 'probability_predictions' below:
     probability_predictions = model.predict_proba(X_test) 
     
-    # 4. Make predictions on the test data using the predict() method and assign the result to the variable 'class_label_predictions' below
+    # 4. Make predictions on the test data using the predict() method and assign the result to the 
+    variable 'class_label_predictions' below:
     class_label_predictions = model.predict(X_test)    
     
     '''
@@ -178,11 +187,8 @@ We will see the 3 cities that our model predicted. We'll also create a plot show
     # Predicted values:
     print("Predicted Flag:")
     print(class_label_predictions.dtype)
-
-    # df['Predicted_Flag'] = pd.dataframe(class_label_predictions)
+    
     df['Predicted_Flag'] = pd.DataFrame (class_label_predictions, columns = ['predicted_flag'])
-
-    # print(df.shape())
 
     print(df[df['Predicted_Flag'] == 1])
 
@@ -196,3 +202,16 @@ The three cities that our model predicted are Jacksonville, Florida. Fort Worth,
 Below is the plot for insights.
 
 INSERT PLOT IMAGE HERE
+
+## Future Proposal
+
+To get results with higher quality, the following are suggestions to consider in the future:
+
+* Include companies outside the metropolitan city as part of the main city count.
+City counties like Los Angeles have a lot of cities that could be merged together in the same metropolitan region. Long Beach, Santa Monica,             Pasadena, Beverly Hills etc could all be merged into Los Angeles metro.
+    
+* K-mean clustering
+Using K-Means clustering can help narrow down a location in the city where the office should be using features like latitude and longitude, distance     from airport and hotels, mdein income of the area and whether the location is downtown/uptown.
+  
+ 
+
