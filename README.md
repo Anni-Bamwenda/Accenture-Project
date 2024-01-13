@@ -79,9 +79,6 @@ We will apply drop unnecessary and redundant data from the datasets then create 
        
     ```
     
-    INSERT IMAGE HERE!(Screenshot)
-
-    
 * Step 03: Creating a new dataframe
 The dataframe will have df_cities.city_name, df_cities.Flag, df_cities.population from existing datasets and the two new columns no. of fortune 500 companies and sum of fortune 500 profits. We'll do that by creating a copy of the existing us_cities df, removing other columns we won't be using,
 then using a dictiomary to loop over the dataset and determine the count for the new features.
@@ -121,6 +118,11 @@ then using a dictiomary to loop over the dataset and determine the count for the
         df_cities.at[list_cities.index(city), 'sum_fortune_profit'] = fortune500_profit[city.upper()]
     
     ```
+
+New DataFrame showing the first 7 rows after Preprocessing
+<img width="700" alt="Screen Shot 2024-01-13 at 12 40 29 PM" src="https://github.com/Anni-Bamwenda/Accenture-Project/assets/67605413/b8291115-53b7-427e-8c53-994117148980">
+
+
 ### Splitting the dataset
 We'll split our dataset into training and test sets.
 Training set: to train our machine learning model. Results will be used on the test set. The training size was 50%
@@ -134,9 +136,11 @@ Model's outcome is mainly based on these factors:
 * No. of fortune 500 companies in a city
 * Population of the city
 
+<img width="742" alt="Screen Shot 2024-01-13 at 12 55 46 PM" src="https://github.com/Anni-Bamwenda/Accenture-Project/assets/67605413/bfa8ff5f-68b5-42ec-90b1-2a89a680c8df">
 
-INSERT IMAGES OF LOGISTIC REGRESSION
+Image above from https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-logistic-regression/
 
+Code implemented:
 
     '''
     #X and Y labels for our model
@@ -201,17 +205,20 @@ The three cities that our model predicted are Jacksonville, Florida. Fort Worth,
 
 Below is the plot for insights.
 
-INSERT PLOT IMAGE HERE
+<img width="886" alt="Screen Shot 2024-01-13 at 12 44 44 PM" src="https://github.com/Anni-Bamwenda/Accenture-Project/assets/67605413/d30fbd3b-96b6-4581-8c5b-885267b7431c">
+
 
 ## Future Proposal
 
 To get results with higher quality, the following are suggestions to consider in the future:
 
 * Include companies outside the metropolitan city as part of the main city count.
-City counties like Los Angeles have a lot of cities that could be merged together in the same metropolitan region. Long Beach, Santa Monica,             Pasadena, Beverly Hills etc could all be merged into Los Angeles metro.
+City counties like Los Angeles have a lot of cities that could be merged together in the same metropolitan region. Long Beach, Santa Monica, Pasadena, Beverly Hills etc. could all be merged into Los Angeles metro.
     
-* K-mean clustering
+* K-mean clustering.
 Using K-Means clustering can help narrow down a location in the city where the office should be using features like latitude and longitude, distance     from airport and hotels, mdein income of the area and whether the location is downtown/uptown.
+
+* Including sum of revenue for each fortune 500 company. I didn't have access to their total revunues, but this could be a great feature to add on model training.
   
  
 
